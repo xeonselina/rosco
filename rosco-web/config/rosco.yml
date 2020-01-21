@@ -429,7 +429,7 @@ tencent:
   # copy/paste this section into a new rosco-local.yml file for use with a
   # pre-built Spinnaker image, make sure to explicitly set the property's
   # value to true.
-  enabled: ${TENCENT_ENABLED:false}
+  enabled: true
   bakeryDefaults:
     templateFile: tencent-basic.json
     baseImages:
@@ -443,6 +443,9 @@ tencent:
         # If not specified, the default templateFile will be used.
         templateFile: tencent-basic.json
       virtualizationSettings:
+      - region: ap-guangzhou
+        virtualizationType: hvm
+        instanceType: M5.SMALL8
 
 swagger:
   enabled: true

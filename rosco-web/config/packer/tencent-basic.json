@@ -1,12 +1,12 @@
 {
   "variables": {
-    "secret_id": "AKIDjJXaS8UjjUtRlqTdHl179wHQLCF6hESU",
-    "secret_key": "zmMo57HtKjy0AC2i9SbjfeUWMOCsNdfS"
+    "secret_id": "{{env `TENCENTCLOUD_SECRET_ID`}}",
+    "secret_key": "{{env `TENCENTCLOUD_SECRET_KEY`}}",
   },
   "builders": [{
     "type": "tencentcloud-cvm",
-    "secret_id": "AKIDjJXaS8UjjUtRlqTdHl179wHQLCF6hESU",
-    "secret_key": "zmMo57HtKjy0AC2i9SbjfeUWMOCsNdfS",
+    "secret_id": "{{user `secret_id`}}",
+    "secret_key": "{{user `secret_key`}}",
     "region": "ap-guangzhou",
     "zone": "ap-guangzhou-4",
     "instance_type": "M5.SMALL8",

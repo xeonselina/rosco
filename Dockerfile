@@ -11,6 +11,10 @@ COPY --from=compile /compiled_sources/rosco-web/build/install/rosco /opt/rosco
 COPY --from=compile /compiled_sources/rosco-web/config              /opt/rosco
 COPY --from=compile /compiled_sources/rosco-web/config/packer       /opt/rosco/config/packer
 
+COPY --from=compile /compiled_sources/coding-deploy/config /opt/spinnaker/config
+COPY --from=compile /compiled_sources/coding-deploy/packer /opt/rosco/config/packer
+COPY --from=compile /compiled_sources/coding-deploy/scripts /opt/rosco/config/packer/scripts
+
 WORKDIR /packer
 
 RUN apk --no-cache add --update bash wget curl openssl && \

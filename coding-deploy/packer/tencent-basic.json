@@ -1,0 +1,36 @@
+{
+  "variables": {
+    "secret_id": "AKIDl661NCPAF3eMp2C3lDpKflbKq55KdAj7",
+    "secret_key": "TjodQzIM53mNlupXzMZZIlz0lFe8PRDk"
+  },
+  "builders": [{
+    "type": "tencentcloud-cvm",
+    "secret_id": "AKIDl661NCPAF3eMp2C3lDpKflbKq55KdAj7",
+    "secret_key": "TjodQzIM53mNlupXzMZZIlz0lFe8PRDk",
+    "region": "ap-guangzhou",
+    "zone": "ap-guangzhou-4",
+    "instance_type": "M5.SMALL8",
+    "source_image_id": "img-pyqx34y1",
+    "image_name": "SpinnakerPackerTest3",
+    "image_description": "Spinnaker Packer Test",
+    "associate_public_ip_address": true,
+    "disk_type": "CLOUD_PREMIUM",
+    "disk_size": 50,
+    "ssh_username" : "ubuntu",
+    "packer_debug": true,
+    "communicator": "ssh",
+    "ssh_proxy_host": "devnet-proxy.oa.com",
+    "ssh_proxy_port": 8080
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "script": "{{user `configDir`}}/install_packages.sh",
+    "environment_vars": [
+      "repository={{user `repository`}}",
+      "package_type={{user `package_type`}}",
+      "packages={{user `packages`}}",
+      "upgrade={{user `upgrade`}}"
+    ],
+    "pause_before": "30s"
+  }]
+}

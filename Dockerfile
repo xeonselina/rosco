@@ -17,8 +17,8 @@ COPY --from=compile /compiled_sources/coding-deploy/scripts /opt/rosco/config/pa
 
 WORKDIR /packer
 
-RUN apt-get update && apt-get -y install openjdk-8-jre-headless wget unzip curl openssh-server && \
-  wget https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip && \
+RUN apk --no-cache add --update bash wget curl openssl 
+RUN wget https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip && \
   unzip packer_1.5.1_linux_amd64.zip && \
   rm packer_1.5.1_linux_amd64.zip
 
@@ -37,6 +37,7 @@ ENV PATH "kustomize:$PATH"
 ENV TENCENTCLOUD_SECRET_ID AKIDl661NCPAF3eMp2C3lDpKflbKq55KdAj7
 ENV TENCENTCLOUD_SECRET_KEY TjodQzIM53mNlupXzMZZIlz0lFe8PRDk
 
-RUN adduser --disabled-login --system spinnaker
+RUN adduser -D -S spinnaker
+
 USER spinnaker
 CMD ["/opt/rosco/bin/rosco"]
